@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "AWB Generator",
+  "version": "1.1.0",
+  "description": "Generate unique Airway Bill numbers with QR code support",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "permissions": ["storage", "clipboardWrite", "tabs"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/index.ts"],
+      "css": ["src/content/widget.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "regenerate-awb": {
+      "suggested_key": { "default": "Alt+Shift+R" },
+      "description": "Regenerate AWB number"
+    },
+    "toggle-widget": {
+      "suggested_key": { "default": "Alt+Shift+A" },
+      "description": "Toggle AWB floating widget"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
