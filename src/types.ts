@@ -5,7 +5,7 @@ export interface AWBSettings {
   includeNumbers: boolean;
   includeHyphen: boolean;
   includeUnderscore: boolean;
-  preffix: string;
+  prefix: string;
   suffix: string;
 }
 
@@ -16,6 +16,6 @@ export const DEFAULT_SETTINGS: AWBSettings = {
   includeNumbers: true,
   includeHyphen: false,
   includeUnderscore: false,
-  preffix: "",
+  prefix: "",
   suffix: "",
 };

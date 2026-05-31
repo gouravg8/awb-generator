@@ -114,8 +114,8 @@ const SettingsPanel: React.FC<Props> = ({ settings, onChange, onClose }) => {
           <div className="toggles-list">
             <Input
               label='Prefix'
-              prefix={settings.preffix}
-              onToggle={() => update("preffix", settings.preffix)}
+              prefix={settings.prefix}
+              onToggle={() => update("prefix", settings.prefix)}
             />
             <Toggle
               label="Underscore"

@@ -23,9 +23,6 @@ importers:
       react-dom:
         specifier: ^19.2.6
         version: 19.2.6(react@19.2.6)
-      vite-plugin-crx:
-        specifier: ^0.0.0-beta.0
-        version: 0.0.0-beta.0
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -1128,9 +1125,6 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
-
-  vite-plugin-crx@0.0.0-beta.0:
-    resolution: {integrity: sha512-qIrVvQuu9KxAjmbKbIx5hOUcG8LAAk0QFKSOU0rh71irWE8bloUHqNkTM2jWZtmJiXRANWKqoG8+H0eiwIUrOw==}
 
   vite@8.0.14:
     resolution: {integrity: sha512-s4BJJ+5y1pYL6Otw51FHhVJQhPnuRinKig64g/1+EUNaJsd3gCKdD31IPFvswUgW9/60QT9oFHbZHbQK5imcxw==}
@@ -2244,8 +2238,6 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
-
-  vite-plugin-crx@0.0.0-beta.0: {}
 
   vite@8.0.14(@types/node@24.12.4):
     dependencies:
