@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -p tsconfig.app.json --noEmit && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "commit:at": "powershell -ExecutionPolicy Bypass -File scripts/git-commit-at.ps1"
   },
   "dependencies": {
     "@crxjs/vite-plugin": "^2.4.0",
