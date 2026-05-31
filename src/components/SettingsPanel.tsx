@@ -27,17 +27,21 @@ const SettingsPanel: React.FC<Props> = ({ settings, onChange, onClose }) => {
   );
 
 
-  const Input: React.FC<{ label: string; prefix: string; onToggle: () => void }> = ({
-    label, prefix, onToggle,
+  const TextInput: React.FC<{ label: string; value: string; onChange: (value: string) => void }> = ({
+    label, value, onChange,
   }) => (
-    <div className="toggle-row" onClick={onToggle}>
+    <label className="setting-input-row">
       <div className="toggle-label">
         <span className="toggle-name">{label}</span>
       </div>
-      <div className={`toggle-switch`}>
-        <input placeholder={label} value={prefix} />
-      </div>
-    </div>
+      <input
+        className="setting-text-input"
+        placeholder={label}
+        type="text"
+        value={value}
+        onChange={e => onChange(e.target.value)}
+      />
+    </label>
   );
 
   return (
@@ -110,18 +114,17 @@ const SettingsPanel: React.FC<Props> = ({ settings, onChange, onClose }) => {
 
 
         <div className="settings-section">
-          <label className="section-label">Prefix, Suffix</label>
+          <label className="section-label">AFFIXES</label>
           <div className="toggles-list">
-            <Input
-              label='Prefix'
-              prefix={settings.prefix}
-              onToggle={() => update("prefix", settings.prefix)}
+            <TextInput
+              label="Prefix"
+              value={settings.prefix}
+              onChange={value => update('prefix', value)}
             />
-            <Toggle
-              label="Underscore"
-              subtext="_"
-              checked={settings.includeUnderscore}
-              onToggle={() => update('includeUnderscore', !settings.includeUnderscore)}
+            <TextInput
+              label="Suffix"
+              value={settings.suffix}
+              onChange={value => update('suffix', value)}
             />
           </div>
         </div>

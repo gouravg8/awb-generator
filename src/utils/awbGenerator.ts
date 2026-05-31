@@ -14,10 +14,12 @@ export function generateAWB(settings: AWBSettings): string {
   if (includeHyphen) specials.push('-');
   if (includeUnderscore) specials.push('_');
 
-  const length = Math.max(4, Math.min(maxLength, 32));
+  const safePrefix = prefix ?? '';
+  const safeSuffix = suffix ?? '';
+  const maxTotalLength = Math.max(4, Math.min(maxLength, 32));
+  const length = Math.max(0, maxTotalLength - safePrefix.length - safeSuffix.length);
 
-  let result = '';
-  if (prefix) result = prefix + "-";
+  let result = safePrefix;
   for (let i = 0; i < length; i++) {
     if (specials.length > 0 && i > 0 && i < length - 1 && Math.random() < 0.15) {
       result += specials[Math.floor(Math.random() * specials.length)];
@@ -25,7 +27,7 @@ export function generateAWB(settings: AWBSettings): string {
       result += charset[Math.floor(Math.random() * charset.length)];
     }
   }
-  if (suffix) result = result + suffix;
+  result += safeSuffix;
 
   return result;
 }

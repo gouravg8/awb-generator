@@ -19,3 +19,10 @@ export const DEFAULT_SETTINGS: AWBSettings = {
   prefix: "",
   suffix: "",
 };
+
+export function normalizeAWBSettings(settings?: Partial<AWBSettings> | null): AWBSettings {
+  return {
+    ...DEFAULT_SETTINGS,
+    ...settings,
+  };
+}

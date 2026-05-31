@@ -3,7 +3,7 @@
 // Double-tap CapsLock regenerates the AWB.
 
 import type { AWBSettings } from '../types';
-import { DEFAULT_SETTINGS } from '../types';
+import { DEFAULT_SETTINGS, normalizeAWBSettings } from '../types';
 import { generateAWB } from '../utils/awbGenerator';
 import { buildQRSVG } from './qrBuilder';
 
@@ -18,14 +18,14 @@ let widget: HTMLElement | null = null;
 function loadSettings(): Promise<void> {
   return new Promise(resolve => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
-      chrome.storage.local.get('awb_settings', (result: Record<string, AWBSettings>) => {
-        if (result.awb_settings) settings = result.awb_settings;
+      chrome.storage.local.get('awb_settings', (result: Record<string, Partial<AWBSettings>>) => {
+        if (result.awb_settings) settings = normalizeAWBSettings(result.awb_settings);
         resolve();
       });
     } else {
       try {
         const s = localStorage.getItem('awb_settings');
-        if (s) settings = JSON.parse(s);
+        if (s) settings = normalizeAWBSettings(JSON.parse(s));
       } catch {}
       resolve();
     }
@@ -36,7 +36,7 @@ function loadSettings(): Promise<void> {
 if (typeof chrome !== 'undefined' && chrome.storage) {
   chrome.storage.onChanged.addListener((changes) => {
     if (changes['awb_settings']?.newValue) {
-      settings = changes['awb_settings'].newValue as AWBSettings;
+      settings = normalizeAWBSettings(changes['awb_settings'].newValue as Partial<AWBSettings>);
     }
   });
 }

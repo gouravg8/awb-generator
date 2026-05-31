@@ -3,7 +3,7 @@ import QRCode from './components/QRCode';
 import SettingsPanel from './components/SettingsPanel';
 import { generateAWB } from './utils/awbGenerator';
 import type { AWBSettings } from './types';
-import { DEFAULT_SETTINGS } from './types';
+import { DEFAULT_SETTINGS, normalizeAWBSettings } from './types';
 import './App.css';
 
 type CopyState = 'idle' | 'copied' | 'error';
@@ -17,13 +17,13 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (typeof chrome !== 'undefined' && chrome.storage) {
-      chrome.storage.local.get('awb_settings', (result: Record<string, AWBSettings>) => {
-        if (result.awb_settings) setSettings(result.awb_settings);
+      chrome.storage.local.get('awb_settings', (result: Record<string, Partial<AWBSettings>>) => {
+        if (result.awb_settings) setSettings(normalizeAWBSettings(result.awb_settings));
       });
     } else {
       try {
         const stored = localStorage.getItem('awb_settings');
-        if (stored) setSettings(JSON.parse(stored));
+        if (stored) setSettings(normalizeAWBSettings(JSON.parse(stored)));
       } catch {}
     }
   }, []);

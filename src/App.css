@@ -307,6 +307,21 @@ button {
   transition: background 0.12s; border: 1px solid transparent;
 }
 .toggle-row:hover { background: var(--surface2); border-color: var(--border); }
+.setting-input-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 7px 10px; border-radius: 8px;
+  transition: background 0.12s; border: 1px solid transparent;
+}
+.setting-input-row:hover { background: var(--surface2); border-color: var(--border); }
+.setting-text-input {
+  width: 132px; height: 28px; padding: 0 9px;
+  border-radius: 6px; border: 1px solid var(--border2);
+  background: var(--surface2); color: var(--fg);
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  outline: none;
+}
+.setting-text-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.setting-text-input::placeholder { color: var(--fg3); }
 .toggle-label { display: flex; flex-direction: column; gap: 1px; }
 .toggle-name { font-size: 12px; font-weight: 500; color: var(--fg); }
 .toggle-sub  { font-size: 10px; color: var(--fg3); font-family: 'IBM Plex Mono', monospace; }
