@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDebouncedCallback } from '../hooks/useDebounce.js';
 import type { AWBSettings } from '../types';
 
 interface Props {
@@ -119,12 +120,12 @@ const SettingsPanel: React.FC<Props> = ({ settings, onChange, onClose }) => {
             <TextInput
               label="Prefix"
               value={settings.prefix}
-              onChange={value => update('prefix', value)}
+              onChange={value => useDebouncedCallback(() => update('prefix', value))}
             />
             <TextInput
               label="Suffix"
               value={settings.suffix}
-              onChange={value => update('suffix', value)}
+              onChange={value => useDebouncedCallback(() => update('suffix', value))}
             />
           </div>
         </div>
